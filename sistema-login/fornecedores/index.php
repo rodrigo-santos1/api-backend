@@ -3,15 +3,15 @@
 include "../verificar-autenticacao.php";
 
 // INDICA QUAL PÁGINA ESTOU NAVEGANDO
-$pagina = "clientes";
+$pagina = "fornecedores";
 
 if (isset($_GET["key"])) {
     $key = $_GET["key"];  //atribui o valor da chave GET à variável $key
-    require("../requests/clientes/get.php");
+    require("../requests/fornecedores/get.php");
     if (isset($response["data"]) && !empty($response["data"])) {
-        $client = $response["data"][0]; 
+        $fornecedor = $response["data"][0]; 
     } else {
-        $client = null; // Se não encontrar, define como nulo
+        $fornecedor = null; // Se não encontrar, define como nulo
     }
 }
 
@@ -22,7 +22,7 @@ if (isset($_GET["key"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Cadastro de Clientes</title>
+    <title>Dashboard - Cadastro de Fornecedores</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -38,46 +38,31 @@ if (isset($_GET["key"])) {
             <div class="col-md-6">
                 <!-- Formulário de cadastro de clientes -->
                 <h2>
-                    Cadastrar Cliente
-                    <a href="./" class="btn btn-primary btn-sm">Novo Cliente</a>
+                    Cadastrar Fornecedor
+                    <a href="./" class="btn btn-primary btn-sm">Novo Fornecedor</a>
                 </h2>
                 <form id="clientForm" action="/clientes/cadastrar.php" method="POST" enctype="multipart/form-data">
                     <div class="mb-3">
-                        <label for="clientId" class="form-label">Código do Cliente</label>
-                        <input type="text" class="form-control" id="clientId" name="clientId" readonly value="<?php echo isset($client) ? $client["id_cliente"] : ""; ?>">
-                    </div>
-                    <div class="mb-3">
-                        <label for="clientName" class="form-label">Nome do Cliente</label>
-                        <input onblur="teste()" type="text" class="form-control" id="clientName" name="clientName" required value="<?php echo isset($client) ? $client["nome"] : ""; ?>">
-                    </div>
-                    <div class="mb-3">
-                        <label for="clientCPF" class="form-label">CPF</label>
-                        <input data-mask="000.000.000-00" type="text" class="form-control" id="clientCPF" name="clientCPF" required value="<?php echo isset($client) ? $client["cpf"] : ""; ?>">
-                    </div>
-                    <div class="mb-3">
-                        <label for="clientEmail" class="form-label">E-mail</label>
-                        <input type="email" class="form-control" id="clientEmail" name="clientEmail" required value="<?php echo isset($client) ? $client["email"] : ""; ?>">
-                    </div>
-                    <div class="mb-3">
-                        <label for="clientWhatsapp" class="form-label">Whatsapp</label>
-                        <input data-mask="(00) 0 0000-0000" type="text" class="form-control" id="clientWhatsapp" name="clientWhatsapp" required value="<?php echo isset($client) ? $client["whatsapp"] : ""; ?>">
-                    </div>
-                    <div class="mb-3">
-                        <label for="clientImage" class="form-label">Imagem</label>
-                        <input type="file" class="form-control" id="clientImage" name="clientImage" accept="image/*" value="<?php echo isset($client) ? $client["imagem"] : ""; ?>">
+                        <label for="fornecedorId" class="form-label">Código do Fornecedor</label>
+                        <input type="text" class="form-control" id="fornecedorId" name="fornecedorId" readonly value="<?php echo isset($fornecedor) ? $fornecedor["id_fornfornecedor"] : ""; ?>">
                     </div>
 
-                    <?php
-                    // SE HOUVER IMAGEM NO CLIENTE, EXIBIR MINIATURA
-                    if (isset($client["imagem"])) {
-                        echo '
-                        <div class="mb-3">
-                            <input type="hidden" name="currentClientImage" value="' . $client["imagem"] . '">
-                            <img width="100" src="imagens/' . $client["imagem"] . '">
-                        </div>
-                        ';
-                    }
-                    ?>
+                    <div class="mb-3">
+                        <label for="fornecedorRazaoSocial" class="form-label">Razão Social</label>
+                        <input type="text" class="form-control" id="fornecedorRazaoSocial" name="fornecedorRazaoSocial" required value="<?php echo isset($fornecedor) ? $fornecedor["razao_social"] : ""; ?>">
+                    <div class="mb-3">
+
+                    <div class="mb-3">
+                        <label for="fornecedorCNPJ" class="form-label">CNPJ</label>
+                        <input type="text" maxlength="18" data-mask="00.000.000/0000-00" class="form-control" id="fornecedorCNPJ" name="fornecedorCNPJ" required value="<?php echo isset($fornecedor) ? $fornecedor["cnpj"] : ""; ?>">
+                    <div class="mb-3">    
+
+                        <label for="fornecedorEmail" class="form-label">E-mail</label>
+                        <input type="email" class="form-control" id="fornecedorEmail" name="fornecedorEmail" required value="<?php echo isset($fornecedor) ? $fornecedor["email"] : ""; ?>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="fornecedorTelefone" class="form-label">Telefone</label>
+                        <input data-mask="(00) 0000-0000" type="text" class="form-control" id="fornecedorTelefone" name="fornecedorTelefone" required value="<?php echo isset($fornecedor) ? $fornecedor["telefone"] : ""; ?>">
                     <div class="mb-3">
                         <label for="clientCEP" class="form-label">CEP</label>
                         <input data-mask="00000-000" type="text" class="form-control" id="clientCEP" name="clientCEP" required value="<?php echo isset($client) ? $client["endereco"]["cep"] : ""; ?>">
@@ -112,7 +97,7 @@ if (isset($_GET["key"])) {
             <div class="col-md-6">
                 <!-- Tabela de clientes cadastrados -->
                 <h2>
-                    Clientes Cadastrados
+                    Fornecedor Cadastrados
                     <a href="exportar.php" class="btn btn-success btn-sm float-left">Excel</a>
                     <a href="exportar_pdf.php" class="btn btn-danger btn-sm float-left">PDF</a>
                 </h2>
@@ -120,11 +105,10 @@ if (isset($_GET["key"])) {
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Imagem</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">CPF</th>
+                            <th scope="col">Razão Social</th>
+                            <th scope="col">CNPJ</th>
                             <th scope="col">E-mail</th>
-                            <th scope="col">Whatsapp</th>
+                            <th scope="col">Telefone</th>
                             <th scope="col">Ações</th>
                         </tr>
                     </thead>
@@ -133,20 +117,19 @@ if (isset($_GET["key"])) {
                         <?php
                         // SE HOUVER CLIENTES NA SESSÃO, EXIBIR
                         $key = null;  //limpa a variável key para trazer todos os clientes
-                        require("../requests/clientes/get.php");
+                        require("../requests/fornecedor/get.php");
                         if(!empty($response)) {
-                            foreach($response["data"] as $key => $client) {
+                            foreach($response["data"] as $key => $fornecedor) {
                                 echo '
                                 <tr>
-                                    <th scope="row">'.$client["id_cliente"].'</th>
-                                    <td><img width="60" src="imagens/'.$client["imagem"].'"></td>
-                                    <td>'.$client["nome"].'</td>
-                                    <td>'.$client["cpf"].'</td>
-                                    <td>'.$client["email"].'</td>
-                                    <td>'.$client["whatsapp"].'</td>
+                                    <th scope="row">'.$fornecedor["id_fornecedor"].'</th>
+                                    <td>'.$fornecedor["razao_social"].'</td>
+                                    <td>'.$fornecedor["cnpj"].'</td>
+                                    <td>'.$fornecedor["email"].'</td>
+                                    <td>'.$fornecedor["telefone"].'</td>
                                     <td>
-                                        <a href="/clientes/?key='.$client["id_cliente"].'" class="btn btn-warning">Editar</a>
-                                        <a href="/clientes/remover.php?key='.$client["id_cliente"].'" class="btn btn-danger">Excluir</a>
+                                        <a href="/fornecedores/?key='.$fornecedor["id_fornecedor"].'" class="btn btn-warning">Editar</a>
+                                        <a href="/fornecedores/remover.php?key='.$fornecedor["id_fornecedor"].'" class="btn btn-danger">Excluir</a>
                                     </td>
                                 </tr>
                                 ';
@@ -154,7 +137,7 @@ if (isset($_GET["key"])) {
                         } else {
                             echo '
                             <tr>
-                                <td colspan="7">Nenhum cliente cadastrado</td>
+                                <td colspan="7">Nenhum fornecedor cadastrado</td>
                             </tr>
                             ';
                         }
@@ -173,34 +156,34 @@ if (isset($_GET["key"])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
     <script> 
-    $('#clientCEP').on('blur', function() {
+    $('#fornecedorCEP').on('blur', function() {
         var cep = $(this).val().replace(/\D/g, '');
         // Verifica se o CEP tem 8 dígitos
         if (cep.length === 8) {
             // Faz a requisição para a API ViaCEP
             $.getJSON('https://viacep.com.br/ws/' + cep + '/json/?callback=?', function(data) {
                 if (!data.erro) {
-                    $('#clientStreet').val(data.logradouro);
-                    $('#clientNeighborhood').val(data.bairro);
-                    $('#clientCity').val(data.localidade);
-                    $('#clientState').val(data.uf);
+                    $('#fornecedorStreet').val(data.logradouro);
+                    $('#fornecedorNeighborhood').val(data.bairro);
+                    $('#fornecedorCity').val(data.localidade);
+                    $('#fornecedorState').val(data.uf);
                 } else {
                     alert('CEP não encontrado.');
-                    $("#clientCEP").val("");
-                    $("#clientStreet").val("");
-                    $("#clientNeighborhood").val("");
-                    $("#clientCity").val("");
-                    $("#clientState").val("");
+                    $("#fornecedorCEP").val("");
+                    $("#fornecedorStreet").val("");
+                    $("#fornecedorNeighborhood").val("");
+                    $("#fornecedorCity").val("");
+                    $("#fornecedorState").val("");
                 }
             });
         } else {
             alert('Formato de CEP inválido.');
             // Limpa os campos de endereço
-            $("#clientCEP").val("");
-            $("#clientStreet").val("");
-            $("#clientNeighborhood").val("");
-            $("#clientCity").val("");
-            $("#clientState").val("");
+            $("#fornecedorCEP").val("");
+            $("#fornecedorStreet").val("");
+            $("#fornecedorNeighborhood").val("");
+            $("#fornecedorCity").val("");
+            $("#fornecedorState").val("");
         }
     });
     </script>
