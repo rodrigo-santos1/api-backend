@@ -13,6 +13,14 @@
                         href="<?php echo $_SESSION["url"];?>/clientes">Clientes</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link <?php echo $pagina == "fornecedores" ? 'active' : ''; ?>"
+                        href="<?php echo $_SESSION["url"];?>/fornecedores">Fornecedores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?php echo $pagina == "produtos" ? 'active' : ''; ?>"
+                        href="<?php echo $_SESSION["url"];?>/produtos">Produtos</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link <?php echo $pagina == "contato" ? 'active' : ''; ?>"
                         href="<?php echo $_SESSION["url"];?>/contato.php">Contato</a>
                 </li>

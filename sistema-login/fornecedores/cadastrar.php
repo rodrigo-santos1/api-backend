@@ -13,10 +13,10 @@ try{
     if ($_POST["fornecedorId"] == "") {
 
         $postfields = array(
-        "razao_social" => $_POST["fornecedorName"],
+        "razao_social" => $_POST["fornecedorRazaoSocial"],
         "cnpj" => $_POST["fornecedorCNPJ"],
         "email" => $_POST["fornecedorEmail"],
-        "telefone" => $_POST["fornecedorPhone"],
+        "telefone" => $_POST["fornecedorTelefone"],
         "endereco" => array(
             "cep" => $_POST["fornecedorCEP"],
             "logradouro" => $_POST["fornecedorStreet"],
@@ -28,15 +28,15 @@ try{
         )
     );
     
-        require("../requests/clientes/post.php");
+        require("../requests/fornecedores/post.php");
     } else {
 
          $postfields = array(
-        "id_cliente" => $_POST["clientId"],
-        "razao_social" => $_POST["fornecedorName"],
+        "id_fornecedor" => $_POST["fornecedorId"],
+        "razao_social" => $_POST["fornecedorRazaoSocial"],
         "cnpj" => $_POST["fornecedorCNPJ"],
         "email" => $_POST["fornecedorEmail"],
-        "telefone" => $_POST["fornecedorPhone"],
+        "telefone" => $_POST["fornecedorTelefone"],
         "endereco" => array(
             "cep" => $_POST["fornecedorCEP"],
             "logradouro" => $_POST["fornecedorStreet"],

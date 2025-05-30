@@ -6,8 +6,8 @@ try {
         $id = $_GET['id'];
         
         $sql = "
-        DELETE FROM clientes 
-        WHERE id_cliente = :id
+        DELETE FROM produtos 
+        WHERE id_produto = :id
         ";
 
         $stmt = $conn->prepare($sql);
@@ -20,7 +20,7 @@ try {
     
     $result = array(
         'status' => 'success',
-        'message' => 'Cliente excluído com sucesso.'
+        'message' => 'Produto excluído com sucesso.'
     );
 
 } catch (Exception $e) {

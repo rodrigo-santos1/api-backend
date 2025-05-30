@@ -36,66 +36,65 @@ if (isset($_GET["key"])) {
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-6">
-                <!-- Formulário de cadastro de clientes -->
+                <!-- Formulário de cadastro de fornecedores -->
                 <h2>
                     Cadastrar Fornecedor
                     <a href="./" class="btn btn-primary btn-sm">Novo Fornecedor</a>
                 </h2>
-                <form id="clientForm" action="/clientes/cadastrar.php" method="POST" enctype="multipart/form-data">
+                <form id="fornecedorForm" action="/fornecedores/cadastrar.php" method="POST" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="fornecedorId" class="form-label">Código do Fornecedor</label>
-                        <input type="text" class="form-control" id="fornecedorId" name="fornecedorId" readonly value="<?php echo isset($fornecedor) ? $fornecedor["id_fornfornecedor"] : ""; ?>">
+                        <input type="text" class="form-control" id="fornecedorId" name="fornecedorId" readonly value="<?php echo isset($fornecedor) ? $fornecedor["id_fornecedor"] : ""; ?>">
                     </div>
-
                     <div class="mb-3">
                         <label for="fornecedorRazaoSocial" class="form-label">Razão Social</label>
                         <input type="text" class="form-control" id="fornecedorRazaoSocial" name="fornecedorRazaoSocial" required value="<?php echo isset($fornecedor) ? $fornecedor["razao_social"] : ""; ?>">
-                    <div class="mb-3">
-
+                    </div>
                     <div class="mb-3">
                         <label for="fornecedorCNPJ" class="form-label">CNPJ</label>
                         <input type="text" maxlength="18" data-mask="00.000.000/0000-00" class="form-control" id="fornecedorCNPJ" name="fornecedorCNPJ" required value="<?php echo isset($fornecedor) ? $fornecedor["cnpj"] : ""; ?>">
-                    <div class="mb-3">    
-
+                    </div>
+                    <div class="mb-3">
                         <label for="fornecedorEmail" class="form-label">E-mail</label>
                         <input type="email" class="form-control" id="fornecedorEmail" name="fornecedorEmail" required value="<?php echo isset($fornecedor) ? $fornecedor["email"] : ""; ?>">
                     </div>
                     <div class="mb-3">
                         <label for="fornecedorTelefone" class="form-label">Telefone</label>
                         <input data-mask="(00) 0000-0000" type="text" class="form-control" id="fornecedorTelefone" name="fornecedorTelefone" required value="<?php echo isset($fornecedor) ? $fornecedor["telefone"] : ""; ?>">
-                    <div class="mb-3">
-                        <label for="clientCEP" class="form-label">CEP</label>
-                        <input data-mask="00000-000" type="text" class="form-control" id="clientCEP" name="clientCEP" required value="<?php echo isset($client) ? $client["endereco"]["cep"] : ""; ?>">
                     </div>
                     <div class="mb-3">
-                        <label for="clientStreet" class="form-label">Logradouro</label>
-                        <input type="text" class="form-control" id="clientStreet" name="clientStreet" required value="<?php echo isset($client) ? $client["endereco"]["logradouro"] : ""; ?>">
+                        <label for="fornecedorCEP" class="form-label">CEP</label>
+                        <input data-mask="00000-000" type="text" class="form-control" id="fornecedorCEP" name="fornecedorCEP" required value="<?php echo isset($fornecedor) ? $fornecedor["endereco"]["cep"] : ""; ?>">
                     </div>
                     <div class="mb-3">
-                        <label for="clientNumber" class="form-label">Número</label>
-                        <input type="text" class="form-control" id="clientNumber" name="clientNumber" required value="<?php echo isset($client) ? $client["endereco"]["numero"] : ""; ?>">
+                        <label for="fornecedorStreet" class="form-label">Logradouro</label>
+                        <input type="text" class="form-control" id="fornecedorStreet" name="fornecedorStreet" required value="<?php echo isset($fornecedor) ? $fornecedor["endereco"]["logradouro"] : ""; ?>">
                     </div>
                     <div class="mb-3">
-                        <label for="clientComplement" class="form-label">Complemento</label>
-                        <input type="text" class="form-control" id="clientComplement" name="clientComplement" value="<?php echo isset($client) ? $client["endereco"]["complemento"] : ""; ?>">
+                        <label for="fornecedorNumber" class="form-label">Número</label>
+                        <input type="text" class="form-control" id="fornecedorNumber" name="fornecedorNumber" required value="<?php echo isset($fornecedor) ? $fornecedor["endereco"]["numero"] : ""; ?>">
                     </div>
                     <div class="mb-3">
-                        <label for="clientNeighborhood" class="form-label">Bairro</label>
-                        <input type="text" class="form-control" id="clientNeighborhood" name="clientNeighborhood" required value="<?php echo isset($client) ? $client["endereco"]["bairro"] : ""; ?>">
+                        <label for="fornecedorComplement" class="form-label">Complemento</label>
+                        <input type="text" class="form-control" id="fornecedorComplement" name="fornecedorComplement" value="<?php echo isset($fornecedor) ? $fornecedor["endereco"]["complemento"] : ""; ?>">
                     </div>
                     <div class="mb-3">
-                        <label for="clientCity" class="form-label">Cidade</label>
-                        <input readonly type="text" class="form-control" id="clientCity" name="clientCity" required value="<?php echo isset($client) ? $client["endereco"]["cidade"] : ""; ?>">
+                        <label for="fornecedorNeighborhood" class="form-label">Bairro</label>
+                        <input type="text" class="form-control" id="fornecedorNeighborhood" name="fornecedorNeighborhood" required value="<?php echo isset($fornecedor) ? $fornecedor["endereco"]["bairro"] : ""; ?>">
                     </div>
                     <div class="mb-3">
-                        <label for="clientState" class="form-label">Estado (UF)</label>
-                        <input readonly type="text" maxlength="2" class="form-control" id="clientState" name="clientState" required value="<?php echo isset($client) ? $client["endereco"]["estado"] : ""; ?>">
+                        <label for="fornecedorCity" class="form-label">Cidade</label>
+                        <input readonly type="text" class="form-control" id="fornecedorCity" name="fornecedorCity" required value="<?php echo isset($fornecedor) ? $fornecedor["endereco"]["cidade"] : ""; ?>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="fornecedorState" class="form-label">Estado (UF)</label>
+                        <input readonly type="text" maxlength="2" class="form-control" id="fornecedorState" name="fornecedorState" required value="<?php echo isset($fornecedor) ? $fornecedor["endereco"]["estado"] : ""; ?>">
                     </div>
                     <button type="submit" class="btn btn-primary">Salvar</button>
                 </form>
             </div>
             <div class="col-md-6">
-                <!-- Tabela de clientes cadastrados -->
+                <!-- Tabela de fornecedores cadastrados -->
                 <h2>
                     Fornecedor Cadastrados
                     <a href="exportar.php" class="btn btn-success btn-sm float-left">Excel</a>
@@ -117,7 +116,7 @@ if (isset($_GET["key"])) {
                         <?php
                         // SE HOUVER CLIENTES NA SESSÃO, EXIBIR
                         $key = null;  //limpa a variável key para trazer todos os clientes
-                        require("../requests/fornecedor/get.php");
+                        require("../requests/fornecedores/get.php");
                         if(!empty($response)) {
                             foreach($response["data"] as $key => $fornecedor) {
                                 echo '
@@ -155,12 +154,10 @@ if (isset($_GET["key"])) {
     <!-- jQuery Mask Plugin -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-    <script> 
+   <<script> 
     $('#fornecedorCEP').on('blur', function() {
         var cep = $(this).val().replace(/\D/g, '');
-        // Verifica se o CEP tem 8 dígitos
         if (cep.length === 8) {
-            // Faz a requisição para a API ViaCEP
             $.getJSON('https://viacep.com.br/ws/' + cep + '/json/?callback=?', function(data) {
                 if (!data.erro) {
                     $('#fornecedorStreet').val(data.logradouro);
@@ -169,24 +166,16 @@ if (isset($_GET["key"])) {
                     $('#fornecedorState').val(data.uf);
                 } else {
                     alert('CEP não encontrado.');
-                    $("#fornecedorCEP").val("");
-                    $("#fornecedorStreet").val("");
-                    $("#fornecedorNeighborhood").val("");
-                    $("#fornecedorCity").val("");
-                    $("#fornecedorState").val("");
+                    $("#fornecedorCEP, #fornecedorStreet, #fornecedorNeighborhood, #fornecedorCity, #fornecedorState").val("");
                 }
             });
         } else {
             alert('Formato de CEP inválido.');
-            // Limpa os campos de endereço
-            $("#fornecedorCEP").val("");
-            $("#fornecedorStreet").val("");
-            $("#fornecedorNeighborhood").val("");
-            $("#fornecedorCity").val("");
-            $("#fornecedorState").val("");
+            $("#fornecedorCEP, #fornecedorStreet, #fornecedorNeighborhood, #fornecedorCity, #fornecedorState").val("");
         }
     });
-    </script>
+</script>
+
 
 </body>
 </html>

@@ -8,8 +8,8 @@ try {
         // Monta a sintaxe SQL de busca
         $sql = "
             SELECT * 
-            FROM clientes
-            WHERE id_cliente = :id
+            FROM produtos
+            WHERE id_produto = :id
         ";
 
         // Preparar a sintaxe SQL
@@ -18,47 +18,29 @@ try {
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     }
     // Verifica se há um NOME na URL para consulta
-    elseif (isset($_GET["nome"]) && is_string($_GET["nome"])) {
-        $nome = $_GET["nome"];
+    elseif (isset($_GET["produto"]) && is_string($_GET["produto"])) {
+        $nome = $_GET["produto"];
 
         // Monta a sintaxe SQL de busca
         $sql = "
             SELECT * 
-            FROM clientes
-            WHERE nome LIKE :nome
-            ORDER BY nome
+            FROM produtos
+            WHERE produto LIKE :produto
+            ORDER BY produto
         ";
 
         // Preparar a sintaxe SQL
         $stmt = $conn->prepare($sql);
         // Vincular o parâmetro :nome com o valor da variável $nome
-        $stmt->bindValue(':nome', '%' . $nome . '%', PDO::PARAM_STR);
-
-    }
-    // Verifica se há uma Cidade na URL para consulta
-    elseif (isset($_GET["cidade"]) && is_string($_GET["cidade"])) {
-        $cidade = $_GET["cidade"];
-
-        // Monta a sintaxe SQL de busca
-        $sql = "
-            SELECT * 
-            FROM clientes
-            WHERE cidade LIKE :cidade
-            ORDER BY nome
-        ";
-
-        // Preparar a sintaxe SQL
-        $stmt = $conn->prepare($sql);
-        // Vincular o parâmetro :cidade com o valor da variável $cidade
-        $stmt->bindValue(':cidade', '%' . $cidade . '%', PDO::PARAM_STR);
+        $stmt->bindValue(':produto', '%' . $produto . '%', PDO::PARAM_STR);
 
     }
     else {
         // Monta a sintaxe SQL de busca
         $sql = "
             SELECT * 
-            FROM clientes
-            ORDER BY nome
+            FROM produtos
+            ORDER BY produto
         ";
         
         // Preparar a sintaxe SQL
@@ -74,33 +56,7 @@ try {
     if (empty($data)) {
         // Se o resultado for vazio, retorna um erro
         http_response_code(204);
-    } else {
-        // Organizar o endereço como objeto
-        foreach ($data as $key => $cliente) {
-            $data[$key]->endereco = array(
-                'logradouro' => $cliente->logradouro,
-                'numero' => $cliente->numero,
-                'complemento' => $cliente->complemento,
-                'bairro' => $cliente->bairro,
-                'cidade' => $cliente->cidade,
-                'estado' => $cliente->estado,
-                'cep' => $cliente->cep
-            );
-            // Remove os campos que não são mais necessários
-            unset($data[$key]->logradouro);
-            unset($data[$key]->numero);
-            unset($data[$key]->complemento);
-            unset($data[$key]->bairro);
-            unset($data[$key]->cidade);
-            unset($data[$key]->estado);
-            unset($data[$key]->cep);
-        }
-        // Se o resultado não for vazio, retorna os dados
-        $result = array(
-            'status' => 'success',
-            'message' => 'Data found',
-            'data' => $data
-        );
+        exit;
     }
 } catch (Exception $e) {
     // Se houver erro, retorna o erro
@@ -122,9 +78,9 @@ if (isset($_GET["id"]) && is_numeric($_GET["id"])) {
     $id = $_GET["id"];
     // BUSCAR O CLIENTE COM O ID PASSADO NA URL
     $found = false;
-    foreach ($data as $cliente) {
-        if ($cliente->id == $id) {
-            $data = $cliente;
+    foreach ($data as $produto) {
+        if ($produto->id == $id) {
+            $data = $produto;
             $found = true;
             break;
         }
@@ -139,9 +95,9 @@ if (isset($_GET["id"]) && is_numeric($_GET["id"])) {
     $result = array();
     // BUSCAR O CLIENTE COM O ID PASSADO NA URL
     $found = false;
-    foreach ($data as $cliente) {
-        if (stripos($cliente->name, $name) !== false) {
-            $result[] = $cliente;
+    foreach ($data as $produto) {
+        if (stripos($produto->name, $name) !== false) {
+            $result[] = $produto;
             $found = true;
         }
     }

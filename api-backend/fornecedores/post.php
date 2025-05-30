@@ -25,7 +25,7 @@ try {
         }
 
         $sql = "
-        INSERT INTO clientes (razao_social, cnpj, email, telefone, logradouro, numero, complemento, bairro, cidade, estado, cep) VALUES 
+        INSERT INTO fornecedores (razao_social, cnpj, email, telefone, logradouro, numero, complemento, bairro, cidade, estado, cep) VALUES 
         (
             :razao_social,
             :cnpj,

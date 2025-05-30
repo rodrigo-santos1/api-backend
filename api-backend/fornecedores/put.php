@@ -24,9 +24,9 @@ try {
             http_response_code(400);
             throw new Exception('ID do cliente é obrigatório');
         }
-        if (empty($nome) || empty($postfields['endereco'])) {
+        if (empty($razao_social) || empty($postfields['endereco'])) {
             http_response_code(400);
-            throw new Exception('Nome e Endereço são obrigatórios');
+            throw new Exception(' e Endereço são obrigatórios');
         }
 
         $sql = "
