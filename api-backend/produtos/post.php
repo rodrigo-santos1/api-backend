@@ -14,10 +14,11 @@ try {
         $preco = $postfields['preco'] ?? 0.0;
 
         // Verifica campos obrigatórios
-        if (empty($produto) || empty($postfields['endereco'])) {
-            http_response_code(400);
-            throw new Exception('Produto e Endereço são obrigatórios');
+        if (empty($produto)) {
+        http_response_code(400);
+        throw new Exception('Produto é obrigatório');
         }
+
 
         $sql = "
         INSERT INTO produtos (produto, descricao, id_marca, imagem, quantidade, preco) VALUES 

@@ -44,7 +44,7 @@ $pagina = "home";
             <div class="col-md-4 mb-4">
                 <div class="card">
                     <div class="card-body text-center">
-                        <i class="bi bi-people" style="font-size: 2rem;"></i>
+                        <i class="bi bi-truck" style="font-size: 2rem;"></i>
                         <h5 class="card-title mt-2">Fornecedores
                             (<?php echo isset($_SESSION["fornecedores"]) ? count($_SESSION["fornecedores"]) : 0;?>)
                         </h5>
@@ -57,7 +57,7 @@ $pagina = "home";
             <div class="col-md-4 mb-4">
                 <div class="card">
                     <div class="card-body text-center">
-                        <i class="bi bi-people" style="font-size: 2rem;"></i>
+                        <i class="bi bi-bag-check" style="font-size: 2rem;"></i>
                         <h5 class="card-title mt-2">Produtos
                             (<?php echo isset($_SESSION["produtos"]) ? count($_SESSION["produtos"]) : 0;?>)
                         </h5>

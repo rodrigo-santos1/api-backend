@@ -9,6 +9,7 @@ try {
         $sql = "
             SELECT * 
             FROM produtos
+            JOIN marcas ON produtos.id_marca = marcas.id_marca
             WHERE id_produto = :id
         ";
 
@@ -57,6 +58,12 @@ try {
         // Se o resultado for vazio, retorna um erro
         http_response_code(204);
         exit;
+    }  else { // Se o resultado não for vazio, retorna os dados
+        $result = array(
+            'status' => 'success',
+            'message' => 'Data found',
+            'data' => $data
+        );
     }
 } catch (Exception $e) {
     // Se houver erro, retorna o erro
