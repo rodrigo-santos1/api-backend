@@ -35,7 +35,7 @@ try{
     if ($_POST["produtoId"] == "") {
 
         $postfields = array(    
-        "produto" => $_POST["produtoName"],
+        "produto" => $_POST["produto"],
         "descricao" => $_POST["produtoDescription"],
         "id_marca" => $_POST["produtoBrand"],
         "imagem" => $_POST["produtoImage"],
@@ -48,7 +48,7 @@ try{
 
         $postfields = array(
         "id_produto" => $_POST["produtoId"],
-        "produto" => $_POST["produtoName"],
+        "produto" => $_POST["produto"],
         "descricao" => $_POST["produtoDescription"],
         "id_marca" => $_POST["produtoBrand"],
         "imagem" => $_POST["produtoImage"],

@@ -33,7 +33,8 @@ $pagina = "home";
                     <div class="card-body text-center">
                         <i class="bi bi-people" style="font-size: 2rem;"></i>
                         <h5 class="card-title mt-2">Clientes
-                            (<?php echo isset($_SESSION["clientes"]) ? count($_SESSION["clientes"]) : 0;?>)
+                            <?php require("requests/clientes/get.php"); ?>
+                            (<?php echo isset($response['data']) ? count($response['data'])  : 0;?>)
                         </h5>
                     </div>
                     <div class="card-footer text-center">
@@ -46,7 +47,8 @@ $pagina = "home";
                     <div class="card-body text-center">
                         <i class="bi bi-truck" style="font-size: 2rem;"></i>
                         <h5 class="card-title mt-2">Fornecedores
-                            (<?php echo isset($_SESSION["fornecedores"]) ? count($_SESSION["fornecedores"]) : 0;?>)
+                            <?php require("requests/fornecedores/get.php"); ?>
+                            (<?php echo isset($response['data']) ? count($response['data'])  : 0;?>)
                         </h5>
                     </div>
                     <div class="card-footer text-center">
@@ -59,7 +61,8 @@ $pagina = "home";
                     <div class="card-body text-center">
                         <i class="bi bi-bag-check" style="font-size: 2rem;"></i>
                         <h5 class="card-title mt-2">Produtos
-                            (<?php echo isset($_SESSION["produtos"]) ? count($_SESSION["produtos"]) : 0;?>)
+                            <?php require("requests/produtos/get.php"); ?>
+                            (<?php echo isset($response['data']) ? count($response['data'])  : 0;?>)
                         </h5>
                     </div>
                     <div class="card-footer text-center">
