@@ -19,6 +19,7 @@ if (isset($_GET["key"])) {
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,6 +28,7 @@ if (isset($_GET["key"])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.min.css" rel="stylesheet">
 </head>
+
 <body>
     <?php
     include "../mensagens.php";
@@ -37,14 +39,18 @@ if (isset($_GET["key"])) {
     <div class="container mt-5">
         <div class="row">
             <div class="col-md">
-                <!-- Tabela de clientes cadastrados -->
-                <h2>
-                    Clientes Cadastrados
-                    <a href="exportar.php" class="btn btn-success btn-sm float-left">Excel</a>
-                    <a href="exportar_pdf.php" class="btn btn-danger btn-sm float-left">PDF</a>
-                    <a href="/clientes/formulario.php" class="btn btn-primary btn-sm">Novo Cliente</a>
-                </h2>
-                <table id="myTable" class="table table-striped">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <!-- Tabela de clientes cadastrados -->
+                        <h2> Clientes Cadastrados </h2>
+                        <div>
+                            <a href="exportar.php" class="btn btn-success btn-sm float-left">Excel</a>
+                            <a href="exportar_pdf.php" class="btn btn-danger btn-sm float-left">PDF</a>
+                            <a href="/clientes/formulario.php" class="btn btn-primary btn-sm">Novo Cliente</a>
+                            <a href="../index.php" class="btn btn-primary btn-sm">Voltar</a>
+                        </div>
+                    </div class="card-body">
+                    <table id="myTable" class="table table-striped">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -86,9 +92,10 @@ if (isset($_GET["key"])) {
                             </tr>
                             ';
                         }
-                        ?>
+                        ?>  
                     </tbody>
-                </table>
+                    </table>
+                </div>    
             </div>
         </div>
     </div>
@@ -98,14 +105,15 @@ if (isset($_GET["key"])) {
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Datatables -->
-    <script src ="https://cdn.datatables.net/2.3.2/js/dataTables.min.js"></script>
-    <script> 
-        let table = new DataTable('#myTable', {
-            language: {
-                url: 'https://cdn.datatables.net/plug-ins/2.3.2/i18n/pt-BR.json',
-            },
-        });
+    <script src="https://cdn.datatables.net/2.3.2/js/dataTables.min.js"></script>
+    <script>
+    let table = new DataTable('#myTable', {
+        language: {
+            url: 'https://cdn.datatables.net/plug-ins/2.3.2/i18n/pt-BR.json',
+        },
+    });
     </script>
 
 </body>
+
 </html>

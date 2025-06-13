@@ -20,13 +20,16 @@ if (isset($_GET["key"])) {
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Cadastro de Produtos</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.min.css" rel="stylesheet">
 </head>
+
 <body>
     <?php
     include "../mensagens.php";
@@ -37,28 +40,35 @@ if (isset($_GET["key"])) {
     <div class="container mt-5">
         <div class="row">
             <div class="col-md">
-                <!-- Tabela de clientes cadastrados -->
-                <h2>
-                    Produtos Cadastrados
-                    <a href="exportar.php" class="btn btn-success btn-sm float-left">Excel</a>
-                    <a href="exportar_pdf.php" class="btn btn-danger btn-sm float-left">PDF</a>
-                    <a href="/produtos/formulario.php" class="btn btn-primary btn-sm">Novo Produto</a>
-                </h2>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Produto</th>
-                            <th scope="col">Imagem</th>
-                            <th scope="col">Descrição</th>
-                            <th scope="col">Marca</th>
-                            <th scope="col">Quantidade</th>
-                            <th scope="col">Preço</th>  
-                        </tr>
-                    </thead>
-                    <tbody id="prdutoTableBody">
-                        <!-- Os clientes serão carregados aqui via PHP -->
-                        <?php
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <!-- Tabela de clientes cadastrados -->
+                        <h2> Produtos Cadastrados </h2>
+                        <div>
+                            <a href="exportar.php" class="btn btn-success btn-sm float-left">Excel</a>
+                            <a href="exportar_pdf.php" class="btn btn-danger btn-sm float-left">PDF</a>
+                            <a href="/produtos/formulario.php" class="btn btn-primary btn-sm">Novo Produto</a>
+                            <a href="../index.php" class="btn btn-primary btn-sm">Voltar</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                    </div>
+                    <table id="myTable" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Produto</th>
+                                <th scope="col">Imagem</th>
+                                <th scope="col">Descrição</th>
+                                <th scope="col">Marca</th>
+                                <th scope="col">Quantidade</th>
+                                <th scope="col">Preço</th>
+                                <th scope="col">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="prdutoTableBody">
+                            <!-- Os clientes serão carregados aqui via PHP -->
+                            <?php
                         // SE HOUVER CLIENTES NA SESSÃO, EXIBIR
                         require("../requests/produtos/get.php");
                         if(!empty($response)) {
@@ -87,18 +97,26 @@ if (isset($_GET["key"])) {
                             ';
                         }
                         ?>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Bootstrap JS (opcional, para funcionalidades como o menu hamburguer) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- jQuery Mask Plugin -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+        <!-- Bootstrap JS (opcional, para funcionalidades como o menu hamburguer) -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- Datatables -->
+        <script src="https://cdn.datatables.net/2.3.2/js/dataTables.min.js"></script>
+        <script>
+        let table = new DataTable('#myTable', {
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/2.3.2/i18n/pt-BR.json',
+            },
+        });
+        </script>
 
 </body>
+
 </html>
