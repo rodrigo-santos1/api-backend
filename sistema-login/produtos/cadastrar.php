@@ -22,7 +22,7 @@ try{
         // SE JÁ EXISTIR UMA IMAGEM, DELETAR A IMAGEM
         if ($_POST["currentProdutoImage"] != "") {
             // UNLINK = DELETAR ARQUIVOS
-            unlink("imagens/" . $_POST["currentClientImage"]);
+            unlink("imagens/" . $_POST["currentProdutoImage"]);
         }
 
     } else {

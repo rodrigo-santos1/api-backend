@@ -66,10 +66,11 @@ if (isset($_GET["key"])) {
                                 <th scope="col">Ações</th>
                             </tr>
                         </thead>
-                        <tbody id="prdutoTableBody">
+                        <tbody id="produtoTableBody">
                             <!-- Os clientes serão carregados aqui via PHP -->
                             <?php
                         // SE HOUVER CLIENTES NA SESSÃO, EXIBIR
+                        $key = null; //limpa a variável key para não interferir em outras requisições
                         require("../requests/produtos/get.php");
                         if(!empty($response)) {
                             foreach($response["data"] as $key => $produto) {
@@ -77,7 +78,9 @@ if (isset($_GET["key"])) {
                                 <tr>
                                     <th scope="row">'.$produto["id_produto"].'</th>
                                     <td>'.$produto["produto"].'</td>
-                                    <td><img width="60" src="imagens/'.$produto["imagem"].'"></td>
+                                    <td>
+                                        <img src="/produtos/imagens/' .$produto["imagem"] .'" alt="Imagem do produto" class="img-thumbnail" style="max-width: 100px;">
+                                    </td>
                                     <td>'.$produto["descricao"].'</td>
                                     <td>'.$produto["marca"].'</td>
                                     <td>'.$produto["quantidade"].'</td>

@@ -8,7 +8,7 @@ if (!empty($_SESSION["produtos"])) {
         $lista .= '
         <tr>
             <th scope="row">'.($key + 1).'</th>
-            <td><img src="imagens/'.$produto["produtoImage"].'" width="100"></td>
+            <td><img src="http://localhost:8080/produtos/imagens/' . $produto["imagem"] . '" width="100"></td>
             <td>'.$produto["produto"].'</td>
             <td>'.$produto["descricao"].'</td>
             <td>'.$produto["id_marca"].'</td>

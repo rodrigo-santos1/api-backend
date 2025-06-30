@@ -92,16 +92,16 @@ if (isset($_GET["key"])) {
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="clientImage" class="form-label">Imagem</label>
-                                    <input type="file" class="form-control" id="clientImage" name="clientImage"
-                                        accept="image/*" value="<?php echo isset($client) ? $client["imagem"] : ""; ?>">
+                                    <label for="produtoImage" class="form-label">Imagem</label>
+                                    <input type="file" class="form-control" id="produtoImage" name="produtoImage"
+                                        accept="image/*">
                                 </div>
 
                                 <?php
                             // SE HOUVER IMAGEM NO CLIENTE, EXIBIR MINIATURA
                                 if (isset($produto["imagem"])) {
                                     echo '
-                                    <div class="mb-3">
+                                    <div class="col-md-3">
                                     <input type="hidden" name="currentProdutoImage" value="' . $produto["imagem"] . '">
                                     <img width="100" src="imagens/' . $produto["imagem"] . '">
                                     </div>
@@ -117,12 +117,13 @@ if (isset($_GET["key"])) {
                                         value="<?php echo isset($produto) ? $produto["descricao"] : ""; ?>">
                                 </div>
                             </div>
-                        </form>
+                        
                     </div>
                     <div class="card-footer ">
                         <button type="submit" class="btn btn-primary">Salvar</button>
                         <a href="./" class="btn btn-primary ">Voltar</a>
                     </div>
+                    </form>
                 </div>
             </div>
 
